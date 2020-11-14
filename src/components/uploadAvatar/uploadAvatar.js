@@ -24,6 +24,7 @@ const Avatar = () => {
     imgWindow.document.write(image.outerHTML);
   };
 
+  // ToDo: action can be added below (as a property for Upload component) to direct post the image. Else some other mechanish needs to be added.
   return (
     <ImgCrop rotate>
       <Upload
