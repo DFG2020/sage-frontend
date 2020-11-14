@@ -1,8 +1,8 @@
-import React from "react"
-import Nav from "./components/NavigationBar/Nav"
-import "./App.css"
-import initClientObject from "./context/client-context/init/init_client_state"
-import {ClientContext} from "./context"
+import React from "react";
+import Nav from "./components/NavigationBar/Nav";
+import "./App.css";
+import initClientObject from "./context/client-context/init/init_client_state";
+import { ClientContext } from "./context";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
