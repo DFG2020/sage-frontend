@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Menu } from "antd";
-import {Landing, NewClient} from "../../pages"
+import { Landing, NewClient } from "../../pages";
 
 const Nav = () => {
   return (
     <Router>
-      <Menu theme="light" mode="horizontal">
+      <Menu theme="dark" mode="horizontal">
         <Menu.Item>
-          <Link to="/">Home</Link>
+          <Link to="/">Sage</Link>
         </Menu.Item>
       </Menu>
 
