@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Landing from "./pages/landing/Landing";
 import NewClient from "./pages/new-client/NewClient";
-// import { Button } from "antd";
+import "./App.css"
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
