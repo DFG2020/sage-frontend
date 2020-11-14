@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Landing from "./pages/landing/Landing";
+import NewClient from "./pages/new-client/NewClient";
 // import { Button } from "antd";
 
 // This site has 3 pages, all of which are rendered
@@ -35,7 +37,7 @@ export default function App() {
         */}
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Landing />
           </Route>
           <Route path="/new-client">
             <NewClient />
@@ -48,19 +50,3 @@ export default function App() {
 
 // You can think of these components as "pages"
 // in your app.
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-function NewClient() {
-  return (
-    <div>
-      <h2>New Client</h2>
-    </div>
-  );
-}
