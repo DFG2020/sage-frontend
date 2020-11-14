@@ -1,5 +1,5 @@
 import React from "react"
-import Nav from "./components/Nav"
+import Nav from "./components/NavigationBar/Nav"
 import "./App.css"
 
 // This site has 3 pages, all of which are rendered
