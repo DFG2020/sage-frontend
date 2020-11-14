@@ -1,23 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Menu } from "antd";
-import '../App.css';
+import {Landing, NewClient} from "../pages"
 
 const Nav = () => {
   return (
     <Router>
       <Menu theme="light" mode="horizontal">
         <Menu.Item>
-          <Route exact path="/">
-            <Link to="/search">Home</Link>
-          </Route>
-        </Menu.Item>
-        <Menu.Item>
-          <Route exact path="/search">
-            <Link to="/search">Search</Link>
-          </Route>
+          <Link to="/">Home</Link>
         </Menu.Item>
       </Menu>
+
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/add" component={NewClient} />
+      </Switch>
     </Router>
   );
 };
