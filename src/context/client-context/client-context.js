@@ -1,6 +1,7 @@
 import React from "react";
 
 const clientObject = {
+   userId: "",
    firstName: "",
    lastName: "",
    middleName: "",
@@ -12,5 +13,5 @@ const clientObject = {
    pendingMail: 0
 };
 
-const ClientContext = React.createContext(clientObject);
+const ClientContext = React.createContext([clientObject, () => {}]);
 export default ClientContext;

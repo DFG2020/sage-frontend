@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Menu } from "antd";
-import {Landing, NewClient} from "../../pages"
+import {Landing, NewClient, ClientList} from "../../pages"
 
 const Nav = () => {
   return (
@@ -15,6 +15,7 @@ const Nav = () => {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/add" component={NewClient} />
+        <Route exact path="/clients" component={ClientList} />
       </Switch>
     </Router>
   );

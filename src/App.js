@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import Nav from "./components/NavigationBar/Nav"
 import "./App.css"
 import initClientObject from "./context/client-context/init/init_client_state"
@@ -14,8 +14,9 @@ import {ClientContext} from "./context"
 // work properly.
 
 export default function App() {
+  const clientObj = useState(initClientObject);
   return (
-    <ClientContext.Provider value={initClientObject}>
+    <ClientContext.Provider value={clientObj}>
       <Nav />
     </ClientContext.Provider>
   );

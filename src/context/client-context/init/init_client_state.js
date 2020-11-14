@@ -1,4 +1,5 @@
 const initClientObject = {
+   userId: "",
    firstName: "",
    lastName: "",
    middleName: "",
