@@ -7,15 +7,16 @@ import { NewClient } from "../modals"
 const Nav = () => {
   return (
     <Router>
-      <Menu theme="light" mode="horizontal">
+      <Menu theme="dark" mode="horizontal">
         <Menu.Item>
-          <Link to="/">Home</Link>
+          <Link to="/">Sage</Link>
         </Menu.Item>
       </Menu>
 
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/add" component={NewClient} />
+        <Route exact path="/mail" component={MailResults} />
       </Switch>
     </Router>
   );
