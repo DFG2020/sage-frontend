@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import Nav from "./components/NavigationBar/Nav"
 import "./App.css"
-import initClientObject from "./context/client-context/init/init_client_state"
 import {ClientContext} from "./context"
 
 // This site has 3 pages, all of which are rendered
@@ -12,6 +11,8 @@ import {ClientContext} from "./context"
 // through the site. This preserves the browser history,
 // making sure things like the back button and bookmarks
 // work properly.
+
+const initClientObject = []
 
 export default function App() {
   const clientObj = useState(initClientObject);
