@@ -1,5 +1,6 @@
 import React from "react";
 import moment from 'moment';
+import axios from "axios";
 import { Form, Input, Row, Col, Select, DatePicker } from "antd";
 
 const { Option } = Select;
@@ -22,7 +23,22 @@ function disabledFutureDates(current) {
 
 const UpdateMail = () => {
   const onFinish = (values) => {
-    console.log(values);
+    const mailId = '1234'
+    axios.put(`http://localhost:8000/api/mail/${mailId}`, {
+      userId: '1234',
+      receivedDateTimeMs: Number(values.receivedDate.format("x")),
+      staffInitial: `${values.staffInitial}`,
+      mailType: `${values.packageType}`,
+      fulfillmentProvider: `${values.sender}`,
+      comment: `${values.comments}`,
+      pickedUpDateTimeMs: Number(values.pickupDate.format("x")),
+      mailStatus: `${values.status}`,
+      signatureImageId: ""
+    }).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      alert(`Network error while updating a mail. Contact IT! msg: ${err}`);
+    })
   };
 
   return (

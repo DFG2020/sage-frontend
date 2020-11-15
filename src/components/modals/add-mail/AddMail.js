@@ -32,13 +32,13 @@ const AddMail = () => {
   const onFinish = (values) => {
     axios.post('http://localhost:8000/api/mail', {
       userId: '1234',
-      receivedDateTimeMs: Number(values.dateReceived.format("x")),
+      receivedDateTimeMs: Number(values.receivedDate.format("x")),
       staffInitial: `${values.staffInitial}`,
-      type: `${values.packageType}`,
+      mailType: `${values.packageType}`,
       fulfillmentProvider: `${values.sender}`,
       comment: `${values.comments}`,
       pickedUpDateTimeMs: 0,
-      status: defaultMailStatus,
+      mailStatus: defaultMailStatus,
       signatureImageId: ""
     }).then((response) => {
       console.log(response);
@@ -75,7 +75,7 @@ const AddMail = () => {
               <Input readOnly />
             </Form.Item>
             <Form.Item
-              name="dateReceived"
+              name="receivedDate"
               label="Date Received"
               rules={[
                 {
