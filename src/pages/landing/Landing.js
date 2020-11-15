@@ -17,7 +17,6 @@ const Landing = () => {
 
   const handleOk = () => {
     // send api call to create the new client. Then add it to the table
-    // console.log(e);
     setNewClientModalOpen(false);
   };
 
@@ -56,8 +55,11 @@ const Landing = () => {
       <Modal
         title="Add a new client"
         visible={newClientModalOpen}
+        okButtonProps={{form:'newClientForm', key: 'submit', htmlType: 'submit'}}
+        okText="Submit"
         onOk={handleOk}
         onCancel={handleCancel}
+        destroyOnClose={true}
         width="70rem"
       >
         {/* new client modal. Should pass in hook to make the api all */}

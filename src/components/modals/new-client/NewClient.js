@@ -16,6 +16,7 @@ const validateMessages = {
 
 const NewClient = () => {
   const onFinish = (values) => {
+    console.log("on finish reached");
     console.log(values);
   };
 
@@ -31,7 +32,7 @@ const NewClient = () => {
         <Col style={{ padding: "0rem 1rem" }} span={16}>
           <Form
             {...layout}
-            name="nest-messages"
+            name="newClientForm"
             onFinish={onFinish}
             validateMessages={validateMessages}
           >
