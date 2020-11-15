@@ -16,20 +16,7 @@ const validateMessages = {
   required: "${label} is required!",
 };
 
-function handleStatusChange(value) {
-  console.log(`selected ${value}`);
-}
-
-function handlePickupDateChange(date, dateString) {
-  console.log(date, dateString);
-}
-
-function handleReceivedDateChange(date, dateString) {
-  console.log(date, dateString);
-}
-
-function disabledFutureDate(current) {
-  // Can not select days before today and today
+function disabledFutureDates(current) {
   return current > moment().endOf('day');
 }
 
@@ -75,8 +62,7 @@ const UpdateMail = () => {
               ]}
             >
               <DatePicker
-                disabledDate={disabledFutureDate}
-                onChange={handleReceivedDateChange} 
+                disabledDate={disabledFutureDates} 
               />
             </Form.Item>
             <Form.Item
@@ -99,14 +85,20 @@ const UpdateMail = () => {
                 },
               ]}
             >
-              <Input />
+              <Select>
+                <Option value="LARGE_MAIL">Large mail</Option>
+                <Option value="REGULAR_SIZED_MAIL">Regular-sized mail</Option>
+                <Option value="SMALL_BOX">Small box</Option>
+                <Option value="PARCEL">Parcel</Option>
+                <Option value="OTHER">Other</Option>
+              </Select>
             </Form.Item>
             <Form.Item
               name="sender"
               label="Sender"
               rules={[
                 {
-                  required: true,
+                  required: false,
                 },
               ]}
             >
@@ -128,42 +120,30 @@ const UpdateMail = () => {
               label="Pick-up Date"
               rules={[
                 {
-                  required: false,
+                  required: true,
                 },
               ]}
             >
               <DatePicker
-                disabledDate={disabledFutureDate}
-                onChange={handlePickupDateChange} 
+                disabledDate={disabledFutureDates}
               />
             </Form.Item>
             {/* react-canvas-wrapper imported to package.json
                 Need to use it to capture mouse signature */}
             <Form.Item
-              name="signature"
-              label="Signature"
-              rules={[
-                {
-                  required: false,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
               name="status"
               label="Status"
               rules={[
                 {
-                  required: false,
+                  required: true,
                 },
               ]}
             >
-              <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleStatusChange}>
+              <Select>
                 <Option value="MAIL_FORWARDED">Mail Forwarded</Option>
                 <Option value="PENDING_PICKUP">Pending Pickup</Option>
                 <Option value="PICKED_UP_CLIENT_USER">Picked up - Client</Option>
-                <Option value="PICKED_UP_FORWARD_USER">Picked up - Authorized User</Option>
+                <Option value="PICKED_UP_AUTH_USER">Picked up - Authorized User</Option>
                 <Option value="RETURNED_TO_SEND">Returned to Sender</Option>
               </Select>
             </Form.Item>
