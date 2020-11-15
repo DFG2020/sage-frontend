@@ -198,7 +198,7 @@ const MailResults = () => {
   };
 
   return (
-    <Layout className="layout">
+    <Layout className="layout" style={{ background: "white" }}>
       <Layout.Content style={{ padding: "5rem 5rem" }}>
         <p>
           {`${name}'s Mail`}
