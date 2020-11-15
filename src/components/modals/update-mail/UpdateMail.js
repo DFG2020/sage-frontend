@@ -160,9 +160,11 @@ const UpdateMail = () => {
               ]}
             >
               <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleStatusChange}>
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="Yiminghe">yiminghe</Option>
+                <Option value="MAIL_FORWARDED">Mail Forwarded</Option>
+                <Option value="PENDING_PICKUP">Pending Pickup</Option>
+                <Option value="PICKED_UP_CLIENT_USER">Picked up - Client</Option>
+                <Option value="PICKED_UP_FORWARD_USER">Picked up - Authorized User</Option>
+                <Option value="RETURNED_TO_SEND">Returned to Sender</Option>
               </Select>
             </Form.Item>
           </Form>
