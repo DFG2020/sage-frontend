@@ -36,16 +36,21 @@ data.push(clientData1, clientData2);
 const ClientList = () => {
   // eslint-disable-next-line no-unused-vars
   const [clientObjectArray, setClientObjectArray] = useContext(ClientContext);
-  // console.table(clientObjectArray);
+  console.log(clientObjectArray);
   // setClientObjectArray(data);
+  // TODO: Change i icon to mail icon
+  // TODO: after mail click, send user to /mail route
+  // TODO; reactiveness of /clients view
   const clientCards = [];
   for (let i = 0; i < clientObjectArray.length; i += 1) {
     clientCards.push(
       <CardItem
-        firstName={clientObjectArray[i].firstName}
-        lastName={clientObjectArray[i].lastName}
-        auFirstName={clientObjectArray[i].authorizedPickupFirstName}
-        auLastName={clientObjectArray[i].authorizedPickupLastName}
+        firstName={clientObjectArray[i].user.firstName}
+        lastName={clientObjectArray[i].user.lastName}
+        auFirstName={clientObjectArray[i].user.authorizedPickupFirstName}
+        auLastName={clientObjectArray[i].user.authorizedPickupLastName}
+        newMail={clientObjectArray[i].totalNewMailCount}
+        totalMail={clientObjectArray[i].totalMailCount}
       />
     );
   }

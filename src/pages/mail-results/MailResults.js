@@ -83,9 +83,9 @@ const dataSource = [
     datePickedUp: "n/a",
   },
   {
+    comments: "Lorem Ipsum",
     key: "8",
     sender: "Mike",
-    comments: "Lorem Ipsum",
     initials: "XY",
     status: "Pending Pickup",
     received: "2020-10-09 09:10:05",
@@ -222,7 +222,11 @@ const MailResults = () => {
         onOk={handleOk}
         onCancel={handleCancel}
         width="70rem"
-        okButtonProps={{form:'addMailForm', key: 'submit', htmlType: 'submit'}}
+        okButtonProps={{
+          form: "addMailForm",
+          key: "submit",
+          htmlType: "submit",
+        }}
       >
         <AddMail />
       </Modal>
