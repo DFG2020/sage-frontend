@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Input, Layout, Button, Modal } from "antd";
+import { Input, Layout, Button, Modal, Typography } from "antd";
 import "./Landing.css";
+import { ReactComponent as SageLogo } from "./sage.svg";
 import NewClient from "../../components/modals/new-client/NewClient";
 
 const Landing = () => {
@@ -26,9 +27,13 @@ const Landing = () => {
   };
 
   return (
-    <Layout className="layout">
-      <Layout.Content style={{ padding: "25rem 25rem" }}>
+    <Layout className="layout" style={{ background: "white" }}>
+      <Layout.Content style={{ padding: "10rem 25rem" }}>
         <div className="site-layout-content">
+          <Typography.Title className="sageTitle">
+            <SageLogo />
+            Sage
+          </Typography.Title>
           <Input.Search
             placeholder="Search by Name"
             allowClear
@@ -53,7 +58,7 @@ const Landing = () => {
         visible={newClientModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        width="90rem"
+        width="70rem"
       >
         {/* new client modal. Should pass in hook to make the api all */}
         <NewClient />
