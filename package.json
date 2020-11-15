@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.8.2",
     "antd-img-crop": "^3.13.2",
+    "axios": "^0.21.0",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-canvas-wrapper": "^0.5.1",

@@ -7,6 +7,7 @@ const Avatar = () => {
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+    console.log(newFileList);
   };
 
   const onPreview = async (file) => {
@@ -33,6 +34,8 @@ const Avatar = () => {
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
+        method="put"
+        action="some url to upload to"
       >
         {fileList.length < 1 && "+ Upload"}
       </Upload>
