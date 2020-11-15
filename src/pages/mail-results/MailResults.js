@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Layout, Table, Button, Modal } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import AddMail from "../../components/modals/add-mail/AddMail";
 import "./MailResults.css";
 
 const dataSource = [
@@ -221,9 +222,7 @@ const MailResults = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <AddMail />
       </Modal>
     </Layout>
   );
