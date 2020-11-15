@@ -137,7 +137,8 @@ const UpdateMail = () => {
                 onChange={handlePickupDateChange} 
               />
             </Form.Item>
-            {/* react-canvas-wrapper imported to package.json - Need to use it to capture mouse signature */}
+            {/* react-canvas-wrapper imported to package.json
+                Need to use it to capture mouse signature */}
             <Form.Item
               name="signature"
               label="Signature"
