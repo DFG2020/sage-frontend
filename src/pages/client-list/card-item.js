@@ -8,7 +8,7 @@ const CardItem = ({ firstName, lastName, auFirstName, auLastName, newMail, total
   const mailDetails = `New Mail: ${newMail} | Total mail: ${totalMail}`;
 
   return (
-    <Col span={4}>
+    <Col>
       <Card
         style={{ width: 300 }}
         cover={
