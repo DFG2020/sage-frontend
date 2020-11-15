@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input, Layout, Button, Modal, Typography } from "antd";
+import axios from "axios";
 import "./Landing.css";
 import { ReactComponent as SageLogo } from "./sage.svg";
 import NewClient from "../../components/modals/new-client/NewClient";
@@ -9,11 +10,21 @@ const Landing = () => {
   const [newClientModalOpen, setNewClientModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
   const [newClientID, setNewClientID] = useState("");
-  const modalScreen = [<NewClient addClientIDToState={setNewClientID} />, 
-    <Avatar newClientID={newClientID} />];
-  
+  const modalScreen = [
+    <NewClient addClientIDToState={setNewClientID} />,
+    <Avatar newClientID={newClientID} />,
+  ];
+
   const onSearch = (e) => {
     console.log(e.target);
+    axios
+      .get("http://localhost:8000/api/search", {
+        name: e.target,
+      })
+      .then((response) => {
+        console.log("response: ");
+        console.log(response);
+      });
   };
 
   const newClient = () => {
@@ -22,7 +33,7 @@ const Landing = () => {
 
   const handleOk = () => {
     // send api call to create the new client. Then add it to the table
-    if(modalIndex === 0) {
+    if (modalIndex === 0) {
       setTimeout(() => {
         setModalIndex(1);
       }, 200);
@@ -70,7 +81,11 @@ const Landing = () => {
         title="Add a new client"
         visible={newClientModalOpen}
         // eslint-disable-next-line max-len
-        okButtonProps={modalIndex === 0 ? {form:'newClientForm', key: 'submit', htmlType: 'submit'} : {htmlType: 'button'}}
+        okButtonProps={
+          modalIndex === 0
+            ? { form: "newClientForm", key: "submit", htmlType: "submit" }
+            : { htmlType: "button" }
+        }
         okText="Next"
         onOk={handleOk}
         onCancel={handleCancel}
