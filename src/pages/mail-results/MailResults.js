@@ -1,148 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Layout, Table, Button, Modal } from "antd";
+import axios from "axios";
+// import moment from "moment";
 import { PlusOutlined } from "@ant-design/icons";
 import AddMail from "../../components/modals/add-mail/AddMail";
+import { ClientIdContext } from "../../context"
 import "./MailResults.css";
-
-const dataSource = [
-  {
-    key: "1",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "2",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "3",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "4",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "5",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "6",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "7",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "8",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "9",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "10",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-  {
-    key: "11",
-    sender: "Mike",
-    comments: "Lorem Ipsum",
-    initials: "XY",
-    status: "Pending Pickup",
-    received: "2020-10-09 09:10:05",
-    type: "Mail",
-    signature: "n/a",
-    datePickedUp: "n/a",
-  },
-];
 
 const columns = [
   {
     title: "Sender",
-    dataIndex: "sender",
-    key: "sender",
+    dataIndex: "fulfillmentProvider",
+    key: "fulfillmentProvider",
   },
   {
     title: "Comments",
-    dataIndex: "comments",
+    dataIndex: "comment",
     key: "comments",
   },
   {
     title: "Staff Initials",
-    dataIndex: "initials",
-    key: "initials",
+    dataIndex: "staffInitial",
+    key: "staffInitial",
   },
   {
     title: "Status of Package",
@@ -151,8 +30,8 @@ const columns = [
   },
   {
     title: "Received Date",
-    dataIndex: "received",
-    key: "received",
+    dataIndex: "receivedDateTimeMs",
+    key: "receivedDateTimeMs",
   },
   {
     title: "Type of Package",
@@ -161,13 +40,13 @@ const columns = [
   },
   {
     title: "Pick up Signature",
-    dataIndex: "signature",
-    key: "signature",
+    dataIndex: "signatureImageId",
+    key: "signatureImageId",
   },
   {
     title: "Date picked Up",
-    dataIndex: "datePickedUp",
-    key: "datePickedUp",
+    dataIndex: "pickedUpDateTimeMs",
+    key: "pickedUpDateTimeMs",
   },
   {
     title: "Action",
@@ -180,6 +59,42 @@ const columns = [
 
 const MailResults = () => {
   const [newMailModalOpen, setNewMailModalOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [mailList, setMailList] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [dataLoading, setDataLoading] = useState(true);
+  const [clientId, setClientId] = useContext(ClientIdContext);
+  setClientId(123)
+  const mailObjectList = []
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/mail/user/${clientId}`, {})
+    .then((response) => {
+      for(let i = 0; i < response.data.length; i += 1){
+        mailObjectList.push(response.data[i]?.mail);
+        if(i === response.data.length - 1){
+          setDataLoading(false)
+          setMailList(mailObjectList);
+        }
+      }
+    });
+  }, [dataLoading]);
+
+  // const convertMSTimeToDate = () => {
+  //   // const convertedMailList = [];
+  //   console.log(mailList);
+  //   for(let i = 0; i <= mailList.length; i += 1) {
+  //     const copiedMailItem = mailList[i];
+  //     const mailRecievedMS = copiedMailItem.receivedDateTimeMs;
+  //     copiedMailItem.receivedDateTimeMs = moment(mailRecievedMS).format("DD MM YYYY");
+  //     console.log(copiedMailItem.receivedDateTimeMs);
+  //     // if(copiedMailItem.pickedUpDateTimeMs){
+
+  //     // }
+  //   }
+  //   return mailList
+  // }
+
   const name = "LeBron James"; // to be fetched from the backend
 
   const newMail = () => {
@@ -214,7 +129,7 @@ const MailResults = () => {
         </p>
 
         {/* </span> */}
-        <Table dataSource={dataSource} columns={columns} />
+        <Table dataSource={mailList} columns={columns} />
       </Layout.Content>
       <Modal
         title="Add Mail"
