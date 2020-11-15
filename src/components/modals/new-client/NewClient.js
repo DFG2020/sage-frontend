@@ -1,17 +1,17 @@
-import React from 'react';
-import { Form, Input, Button, Row, Col } from 'antd';
-import {Avatar} from '../..'
+import React from "react";
+import { Form, Input, Row, Col } from "antd";
+import { Avatar } from "../..";
 
 const layout = {
   labelCol: {
-    span: 8,
+    span: 12,
   },
   wrapperCol: {
-    span: 16,
+    span: 12,
   },
 };
 const validateMessages = {
-  required: '${label} is required!',
+  required: "${label} is required!",
 };
 
 const NewClient = () => {
@@ -20,20 +20,23 @@ const NewClient = () => {
   };
 
   return (
-    <div style={{background: "grey"}}>
-      <Row style={{background: "white", margin: "1rem 4rem", padding: "1rem 0rem"}}>
-        <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>Add New User</Col>
-      </Row>
-      <Row style={{background: "white", margin: "1rem 4rem", padding: "1rem 0rem"}}>
-        <Col style={{padding: "0rem 1rem"}} span={12}>
-          <Form 
+    <div>
+      <Row
+        style={{
+          background: "white",
+          margin: "1rem 4rem",
+          padding: "1rem 0rem",
+        }}
+      >
+        <Col style={{ padding: "0rem 1rem" }} span={16}>
+          <Form
             {...layout}
             name="nest-messages"
             onFinish={onFinish}
             validateMessages={validateMessages}
           >
             <Form.Item
-              name='clientFirstName'
+              name="clientFirstName"
               label="Client First Name"
               rules={[
                 {
@@ -44,7 +47,7 @@ const NewClient = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              name='clientLastName'
+              name="clientLastName"
               label="Client Last Name"
               rules={[
                 {
@@ -55,7 +58,7 @@ const NewClient = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              name='clientMiddleName'
+              name="clientMiddleName"
               label="Client Middle Name"
               rules={[
                 {
@@ -66,7 +69,7 @@ const NewClient = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              name='forwardingAddress'
+              name="forwardingAddress"
               label="Forwarding Address"
               rules={[
                 {
@@ -77,7 +80,7 @@ const NewClient = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              name='authFirstName'
+              name="authFirstName"
               label="Authorized Pick-up Contact First Name"
               rules={[
                 {
@@ -88,7 +91,7 @@ const NewClient = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              name='authLastName'
+              name="authLastName"
               label="Authorized Pick-up Contact Last Name"
               rules={[
                 {
@@ -99,7 +102,7 @@ const NewClient = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              name='authMiddleName'
+              name="authMiddleName"
               label="Authorized Pick-up Contact Middle Name"
               rules={[
                 {
@@ -109,14 +112,11 @@ const NewClient = () => {
             >
               <Input />
             </Form.Item>
-            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-              <Button type="primary" htmlType="submit">
-                Add
-              </Button>
-            </Form.Item>         
           </Form>
         </Col>
-        <Col style={{padding: "0rem 1rem"}} span={12}><Avatar /></Col>
+        <Col style={{ padding: "0rem 1rem" }} span={8}>
+          <Avatar />
+        </Col>
       </Row>
     </div>
   );

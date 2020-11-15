@@ -1,14 +1,28 @@
-import React from "react";
-import { Input, Layout, Button } from "antd";
+import React, { useState } from "react";
+import { Input, Layout, Button, Modal } from "antd";
 import "./Landing.css";
+import NewClient from "../../components/modals/new-client/NewClient";
 
 const Landing = () => {
+  const [newClientModalOpen, setNewClientModalOpen] = useState(false);
+
   const onSearch = (e) => {
     console.log(e.target);
   };
 
   const newClient = () => {
-    console.log("open new client modal here");
+    setNewClientModalOpen(true);
+  };
+
+  const handleOk = () => {
+    // send api call to create the new client. Then add it to the table
+    // console.log(e);
+    setNewClientModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    // Do nothing
+    setNewClientModalOpen(false);
   };
 
   return (
@@ -34,6 +48,16 @@ const Landing = () => {
           </Button>
         </div>
       </Layout.Content>
+      <Modal
+        title="Add a new client"
+        visible={newClientModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width="90rem"
+      >
+        {/* new client modal. Should pass in hook to make the api all */}
+        <NewClient />
+      </Modal>
     </Layout>
   );
 };
