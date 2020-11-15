@@ -1,1 +1,4 @@
 @import '~antd/dist/antd.css';
+.ant-picker {
+    width: 18.7rem
+}
