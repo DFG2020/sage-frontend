@@ -1,5 +1,6 @@
 import React from "react";
 import moment from 'moment';
+import axios from "axios";
 import { Form, Input, Row, Col, DatePicker } from "antd";
 
 const layout = {
@@ -23,9 +24,25 @@ function disabledFutureDate(current) {
   return current > moment().endOf('day');
 }
 
+// Todo - Add User Id to the body. Add correct client name to the readOnly input (clientName)
 const AddMail = () => {
+  const defaultMailStatus = "PENDING_PICKUP";
   const onFinish = (values) => {
-    console.log(values);
+    axios.post('http://localhost:8000/api/mail', {
+      userId: '1234',
+      receivedDateTimeMs: Number(values.dateReceived.format("x")),
+      staffInitial: `${values.staffInitial}`,
+      type: `${values.packageType}`,
+      fulfillmentProvider: `${values.sender}`,
+      comment: `${values.comments}`,
+      pickedUpDateTimeMs: 0,
+      status: defaultMailStatus,
+      signatureImageId: ""
+    }).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      alert(`Network error while adding a new mail. Contact IT! msg: ${err}`);
+    })
   };
 
   return (
