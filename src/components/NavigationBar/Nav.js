@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Menu } from "antd";
-import { Landing } from "../../pages"
-import { NewClient } from "../modals"
+import { Landing, MailResults } from "../../pages";
+import { NewClient } from "../modals";
 
 const Nav = () => {
   return (
