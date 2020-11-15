@@ -16,6 +16,7 @@ const validateMessages = {
 
 const NewClient = () => {
   const onFinish = (values) => {
+    console.log("on finish reached");
     console.log(values);
     axios.post('localhost:8000/api/user', {
       firstName: `${values.clientFirstName}`,
