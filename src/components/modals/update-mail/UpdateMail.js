@@ -1,6 +1,8 @@
 import React from "react";
 import moment from 'moment';
-import { Form, Input, Row, Col, DatePicker } from "antd";
+import { Form, Input, Row, Col, Select, DatePicker } from "antd";
+
+const { Option } = Select;
 
 const layout = {
   labelCol: {
@@ -14,7 +16,15 @@ const validateMessages = {
   required: "${label} is required!",
 };
 
-function handleDateChange(date, dateString) {
+function handleStatusChange(value) {
+  console.log(`selected ${value}`);
+}
+
+function handlePickupDateChange(date, dateString) {
+  console.log(date, dateString);
+}
+
+function handleReceivedDateChange(date, dateString) {
   console.log(date, dateString);
 }
 
@@ -23,7 +33,7 @@ function disabledFutureDate(current) {
   return current > moment().endOf('day');
 }
 
-const AddMail = () => {
+const UpdateMail = () => {
   const onFinish = (values) => {
     console.log(values);
   };
@@ -40,7 +50,7 @@ const AddMail = () => {
         <Col style={{ padding: "0rem 1rem" }} span={16}>
           <Form
             {...layout}
-            name="addMailForm"
+            name="updateMailForm"
             onFinish={onFinish}
             validateMessages={validateMessages}
           >
@@ -56,8 +66,8 @@ const AddMail = () => {
               <Input readOnly />
             </Form.Item>
             <Form.Item
-              name="dateReceived"
-              label="Date Received"
+              name="receivedDate"
+              label="Received Date"
               rules={[
                 {
                   required: true,
@@ -66,7 +76,7 @@ const AddMail = () => {
             >
               <DatePicker
                 disabledDate={disabledFutureDate}
-                onChange={handleDateChange} 
+                onChange={handleReceivedDateChange} 
               />
             </Form.Item>
             <Form.Item
@@ -113,6 +123,47 @@ const AddMail = () => {
             >
               <Input />
             </Form.Item>
+            <Form.Item
+              name="pickupDate"
+              label="Pick-up Date"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
+              <DatePicker
+                disabledDate={disabledFutureDate}
+                onChange={handlePickupDateChange} 
+              />
+            </Form.Item>
+            {/* react-canvas-wrapper imported to package.json - Need to use it to capture mouse signature */}
+            <Form.Item
+              name="signature"
+              label="Signature"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="status"
+              label="Status"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
+              <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleStatusChange}>
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="Yiminghe">yiminghe</Option>
+              </Select>
+            </Form.Item>
           </Form>
         </Col>
       </Row>
@@ -120,4 +171,4 @@ const AddMail = () => {
   );
 };
 
-export default AddMail;
+export default UpdateMail;

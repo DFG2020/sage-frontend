@@ -221,6 +221,8 @@ const MailResults = () => {
         visible={newMailModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        width="70rem"
+        okButtonProps={{form:'addMailForm', key: 'submit', htmlType: 'submit'}}
       >
         <AddMail />
       </Modal>
