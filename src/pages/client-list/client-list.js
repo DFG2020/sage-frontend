@@ -34,8 +34,10 @@ const data = [];
 data.push(clientData1, clientData2);
 
 const ClientList = () => {
+  // eslint-disable-next-line no-unused-vars
   const [clientObjectArray, setClientObjectArray] = useContext(ClientContext);
-  setClientObjectArray(data);
+  // console.table(clientObjectArray);
+  // setClientObjectArray(data);
   const clientCards = [];
   for (let i = 0; i < clientObjectArray.length; i += 1) {
     clientCards.push(

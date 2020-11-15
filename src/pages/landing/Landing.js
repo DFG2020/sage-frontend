@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Input, Layout, Button, Modal, Typography } from "antd";
 import axios from "axios";
 import "./Landing.css";
 import { ReactComponent as SageLogo } from "./sage.svg";
 import NewClient from "../../components/modals/new-client/NewClient";
 import { Avatar } from "../../components";
+import { ClientContext } from "../../context";
 
 const Landing = () => {
+  const history = useHistory();
   const [newClientModalOpen, setNewClientModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
   const [newClientID, setNewClientID] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [clients, setClients] = useContext(ClientContext);
   const modalScreen = [
     <NewClient addClientIDToState={setNewClientID} />,
     <Avatar newClientID={newClientID} />,
@@ -23,7 +28,10 @@ const Landing = () => {
       })
       .then((response) => {
         console.log("response: ");
-        console.log(response);
+        console.table(response?.data);
+        setClients(response?.data);
+        // return <Link to="/clients" />;
+        history.push("/clients");
       });
   };
 
