@@ -14,10 +14,10 @@ const validateMessages = {
   required: "${label} is required!",
 };
 
-const NewClient = () => {
+const NewClient = ({addClientIDToState}) => {
   const onFinish = (values) => {
     console.log(values);
-    axios.post('localhost:8000/api/user', {
+    axios.post('http://localhost:8000/api/user', {
       firstName: `${values.clientFirstName}`,
       lastName: `${values.clientLastName}`,
       middleName: `${values.clientMiddleName}`,
@@ -26,6 +26,7 @@ const NewClient = () => {
       authorizedPickupLastName: `${values.authLastName}`,
       profile_image_id: ``
     }).then((response) => {
+      addClientIDToState(response.data.userId);
       console.log(response);
     }).catch((err) => {
       alert(`Network error creating profile contact IT! msg: ${err}`);

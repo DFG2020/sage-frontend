@@ -8,7 +8,9 @@ import { Avatar } from "../../components";
 const Landing = () => {
   const [newClientModalOpen, setNewClientModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
-  const modalScreen = [<NewClient />, <Avatar />];
+  const [newClientID, setNewClientID] = useState("");
+  const modalScreen = [<NewClient addClientIDToState={setNewClientID} />, 
+    <Avatar newClientID={newClientID} />];
   
   const onSearch = (e) => {
     console.log(e.target);
@@ -34,6 +36,7 @@ const Landing = () => {
     // Do nothing
     setNewClientModalOpen(false);
     setModalIndex(0);
+    setNewClientID("");
   };
 
   return (

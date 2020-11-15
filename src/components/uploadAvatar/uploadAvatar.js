@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 
-const Avatar = () => {
+const Avatar = ({newClientID}) => {
   const [fileList, setFileList] = useState([]);
 
   const onChange = ({ fileList: newFileList }) => {
@@ -35,7 +35,7 @@ const Avatar = () => {
         onChange={onChange}
         onPreview={onPreview}
         method="put"
-        action="some url to upload to"
+        action={`https://localhost:8000/api/some/path/${newClientID}`}
       >
         {fileList.length < 1 && "+ Upload"}
       </Upload>
