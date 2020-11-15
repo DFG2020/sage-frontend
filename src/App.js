@@ -1,8 +1,7 @@
-import React from "react";
-import Nav from "./components/NavigationBar/Nav";
-import "./App.css";
-import initClientObject from "./context/client-context/init/init_client_state";
-import { ClientContext } from "./context";
+import React, {useState} from "react"
+import Nav from "./components/NavigationBar/Nav"
+import "./App.css"
+import {ClientContext} from "./context"
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -13,9 +12,12 @@ import { ClientContext } from "./context";
 // making sure things like the back button and bookmarks
 // work properly.
 
+const initClientObject = []
+
 export default function App() {
+  const clientObj = useState(initClientObject);
   return (
-    <ClientContext.Provider value={initClientObject}>
+    <ClientContext.Provider value={clientObj}>
       <Nav />
     </ClientContext.Provider>
   );
