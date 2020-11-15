@@ -1,7 +1,9 @@
 import React from "react";
 import moment from 'moment';
 import axios from "axios";
-import { Form, Input, Row, Col, DatePicker } from "antd";
+import { Form, Input, Row, Col, DatePicker, Select } from "antd";
+
+const { Option } = Select;
 
 const layout = {
   labelCol: {
@@ -30,13 +32,13 @@ const AddMail = () => {
   const onFinish = (values) => {
     axios.post('http://localhost:8000/api/mail', {
       userId: '1234',
-      receivedDateTimeMs: Number(values.dateReceived.format("x")),
+      receivedDateTimeMs: Number(values.receivedDate.format("x")),
       staffInitial: `${values.staffInitial}`,
-      type: `${values.packageType}`,
+      mailType: `${values.packageType}`,
       fulfillmentProvider: `${values.sender}`,
       comment: `${values.comments}`,
       pickedUpDateTimeMs: 0,
-      status: defaultMailStatus,
+      mailStatus: defaultMailStatus,
       signatureImageId: ""
     }).then((response) => {
       console.log(response);
@@ -73,7 +75,7 @@ const AddMail = () => {
               <Input readOnly />
             </Form.Item>
             <Form.Item
-              name="dateReceived"
+              name="receivedDate"
               label="Date Received"
               rules={[
                 {
@@ -106,14 +108,20 @@ const AddMail = () => {
                 },
               ]}
             >
-              <Input />
+              <Select>
+                <Option value="LARGE_MAIL">Large mail</Option>
+                <Option value="REGULAR_SIZED_MAIL">Regular-sized mail</Option>
+                <Option value="SMALL_BOX">Small box</Option>
+                <Option value="PARCEL">Parcel</Option>
+                <Option value="OTHER">Other</Option>
+              </Select>
             </Form.Item>
             <Form.Item
               name="sender"
               label="Sender"
               rules={[
                 {
-                  required: true,
+                  required: false,
                 },
               ]}
             >
