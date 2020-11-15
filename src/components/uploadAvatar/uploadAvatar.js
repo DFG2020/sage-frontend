@@ -34,6 +34,8 @@ const Avatar = () => {
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
+        method="put"
+        action="some url to upload to"
       >
         {fileList.length < 1 && "+ Upload"}
       </Upload>
