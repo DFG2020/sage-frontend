@@ -7,6 +7,7 @@ const Avatar = () => {
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+    console.log(newFileList);
   };
 
   const onPreview = async (file) => {

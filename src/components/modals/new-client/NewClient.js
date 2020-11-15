@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Row, Col } from "antd";
-import { Avatar } from "../..";
+import axios from "axios";
 
 const layout = {
   labelCol: {
@@ -16,8 +16,20 @@ const validateMessages = {
 
 const NewClient = () => {
   const onFinish = (values) => {
-    console.log("on finish reached");
     console.log(values);
+    axios.post('localhost:8000/api/user', {
+      firstName: `${values.clientFirstName}`,
+      lastName: `${values.clientLastName}`,
+      middleName: `${values.clientMiddleName}`,
+      forwardAddressLine: `${values.forwardingAddress}`,
+      authorizedPickupFirstName: `${values.authFirstName}`,
+      authorizedPickupLastName: `${values.authLastName}`,
+      profile_image_id: ``
+    }).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      alert(`Network error creating profile contact IT! msg: ${err}`);
+    })
   };
 
   return (
@@ -114,9 +126,6 @@ const NewClient = () => {
               <Input />
             </Form.Item>
           </Form>
-        </Col>
-        <Col style={{ padding: "0rem 1rem" }} span={8}>
-          <Avatar />
         </Col>
       </Row>
     </div>

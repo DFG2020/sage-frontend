@@ -3,10 +3,13 @@ import { Input, Layout, Button, Modal, Typography } from "antd";
 import "./Landing.css";
 import { ReactComponent as SageLogo } from "./sage.svg";
 import NewClient from "../../components/modals/new-client/NewClient";
+import { Avatar } from "../../components";
 
 const Landing = () => {
   const [newClientModalOpen, setNewClientModalOpen] = useState(false);
-
+  const [modalIndex, setModalIndex] = useState(0);
+  const modalScreen = [<NewClient />, <Avatar />];
+  
   const onSearch = (e) => {
     console.log(e.target);
   };
@@ -17,12 +20,20 @@ const Landing = () => {
 
   const handleOk = () => {
     // send api call to create the new client. Then add it to the table
-    setNewClientModalOpen(false);
+    if(modalIndex === 0) {
+      setTimeout(() => {
+        setModalIndex(1);
+      }, 200);
+    } else {
+      setNewClientModalOpen(false);
+      setModalIndex(0);
+    }
   };
 
   const handleCancel = () => {
     // Do nothing
     setNewClientModalOpen(false);
+    setModalIndex(0);
   };
 
   return (
@@ -55,15 +66,16 @@ const Landing = () => {
       <Modal
         title="Add a new client"
         visible={newClientModalOpen}
-        okButtonProps={{form:'newClientForm', key: 'submit', htmlType: 'submit'}}
-        okText="Submit"
+        // eslint-disable-next-line max-len
+        okButtonProps={modalIndex === 0 ? {form:'newClientForm', key: 'submit', htmlType: 'submit'} : {htmlType: 'button'}}
+        okText="Next"
         onOk={handleOk}
         onCancel={handleCancel}
         destroyOnClose={true}
         width="70rem"
       >
         {/* new client modal. Should pass in hook to make the api all */}
-        <NewClient />
+        {modalScreen[modalIndex]}
       </Modal>
     </Layout>
   );
